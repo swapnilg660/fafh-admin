@@ -40,10 +40,99 @@ import DataTable from "examples/Tables/DataTable";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import { Card } from "@mui/material";
 import Projects from "./components/Projects";
+import { object } from "prop-types";
+import { useEffect, useState } from "react";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
   const { columns, rows } = authorsTableData();
+  const [userData, setUserData] = useState({
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    datasets: { label: "Users", data: [0, 0, 0, 0, 0, 0, 0] },
+  });
+  const [mealsData, setMealsData] = useState({
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    datasets: { label: "Meals", data: [0, 0, 0, 0, 0, 0, 0] },
+  });
+  const [waterData, setWaterData] = useState({
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    datasets: { label: "Water", data: [0, 0, 0, 0, 0, 0, 0] },
+  });
+
+  const getUserData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://glacial-refuge-38575.herokuapp.com/getUserStats", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("result", result);
+        var res = result.data;
+        var data = [];
+        Object.keys(res).forEach((key) => {
+          data.push(res[key]);
+        });
+        setUserData({
+          labels: ["M", "T", "W", "T", "F", "S", "S"],
+          datasets: { label: "Users", data: data },
+        });
+      })
+      .catch((error) => console.log("error getting user stats: ", error));
+  };
+
+  const getMealsData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://glacial-refuge-38575.herokuapp.com/getMealStats", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("result", result);
+        var res = result.data;
+        var data = [];
+        Object.keys(res).forEach((key) => {
+          data.push(res[key]);
+        });
+        setMealsData({
+          labels: ["M", "T", "W", "T", "F", "S", "S"],
+          datasets: { label: "Meals", data: data },
+        });
+      })
+      .catch((error) => console.log("error getting meal stats: ", error));
+  };
+
+  const getWaterData = () => {
+    var requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch("https://glacial-refuge-38575.herokuapp.com/getWaterStats", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("result", result);
+        var res = result.data;
+        var data = [];
+        Object.keys(res).forEach((key) => {
+          data.push(res[key]);
+        });
+        setWaterData({
+          labels: ["M", "T", "W", "T", "F", "S", "S"],
+          datasets: { label: "Water", data: data },
+        });
+      })
+      .catch((error) => console.log("error getting water stats: ", error));
+  };
+
+  useEffect(() => {
+    getUserData();
+    getMealsData();
+    getWaterData();
+  }, []);
 
   return (
     <DashboardLayout>
@@ -58,7 +147,7 @@ function Dashboard() {
                   title="Application Users"
                   description="Registered FAFH users"
                   date="Data is updated every time a new user registers"
-                  chart={reportsBarChartData}
+                  chart={userData}
                 />
               </MDBox>
             </Grid>
@@ -69,7 +158,7 @@ function Dashboard() {
                   title="Meals recorded"
                   description="Total meals recorded in the last 7 days"
                   date="updated on new meal user record"
-                  chart={sales}
+                  chart={mealsData}
                 />
               </MDBox>
             </Grid>
@@ -80,7 +169,7 @@ function Dashboard() {
                   title="Water consumption"
                   description="Average water consumption in the last 7 days"
                   date="updated on each user consumption"
-                  chart={tasks}
+                  chart={waterData}
                 />
               </MDBox>
             </Grid>
