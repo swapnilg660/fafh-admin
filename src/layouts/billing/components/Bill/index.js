@@ -26,6 +26,7 @@ import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
+import { Image } from "@mui/icons-material";
 
 function Bill({ name, company, email, vat, noGutter }) {
   const [controller] = useMaterialUIController();
@@ -42,6 +43,7 @@ function Bill({ name, company, email, vat, noGutter }) {
       p={3}
       mb={noGutter ? 0 : 1}
       mt={2}
+      w="100%"
     >
       <MDBox width="100%" display="flex" flexDirection="column">
         <MDBox
@@ -62,32 +64,49 @@ function Bill({ name, company, email, vat, noGutter }) {
               </MDButton>
             </MDBox>
             <MDButton variant="text" color={darkMode ? "white" : "dark"}>
-              <Icon>edit</Icon>&nbsp;edit
+              <Icon>edit</Icon>&nbsp;Reply
             </MDButton>
           </MDBox>
         </MDBox>
         <MDBox mb={1} lineHeight={0}>
           <MDTypography variant="caption" color="text">
-            Company Name:&nbsp;&nbsp;&nbsp;
+            Title:&nbsp;&nbsp;&nbsp;
             <MDTypography variant="caption" fontWeight="medium" textTransform="capitalize">
-              {company}
+              data is not showing
             </MDTypography>
           </MDTypography>
         </MDBox>
         <MDBox mb={1} lineHeight={0}>
           <MDTypography variant="caption" color="text">
-            Email Address:&nbsp;&nbsp;&nbsp;
+            Message:&nbsp;&nbsp;&nbsp;
             <MDTypography variant="caption" fontWeight="medium">
-              {email}
+              SO i was using the app and now my data is nolonger showing, it just keeps on loading.
             </MDTypography>
           </MDTypography>
         </MDBox>
-        <MDTypography variant="caption" color="text">
-          VAT Number:&nbsp;&nbsp;&nbsp;
-          <MDTypography variant="caption" fontWeight="medium">
-            {vat}
-          </MDTypography>
-        </MDTypography>
+        <MDBox mb={1} lineHeight={0}>
+          <img
+            src="https://picsum.photos/200"
+            alt="image"
+            width={"20%"}
+            height={"20%"}
+            style={{ borderRadius: 10, margin: 5 }}
+          />
+          <img
+            src="https://picsum.photos/200"
+            alt="image"
+            width={"20%"}
+            height={"20%"}
+            style={{ borderRadius: 10, margin: 5 }}
+          />
+          <img
+            src="https://picsum.photos/200"
+            alt="image"
+            width={"20%"}
+            height={"20%"}
+            style={{ borderRadius: 10, margin: 5 }}
+          />
+        </MDBox>
       </MDBox>
     </MDBox>
   );
