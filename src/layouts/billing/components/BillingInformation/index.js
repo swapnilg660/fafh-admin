@@ -25,10 +25,10 @@ import Bill from "layouts/billing/components/Bill";
 
 function BillingInformation() {
   return (
-    <Card id="delete-account">
+    <Card id="delete-account" width="100%" style={{ width: "100%" }}>
       <MDBox pt={3} px={2}>
         <MDTypography variant="h6" fontWeight="medium">
-          Billing Information
+          Users bug reports and feature requests
         </MDTypography>
       </MDBox>
       <MDBox pt={1} pb={2} px={2}>
