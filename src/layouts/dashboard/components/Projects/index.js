@@ -32,6 +32,7 @@ import DataTable from "examples/Tables/DataTable";
 import data from "layouts/dashboard/components/Projects/data";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import MDAvatar from "components/MDAvatar";
+import { BASE_URL } from "config";
 
 function Projects() {
   const [rowsData, setRows] = useState([]);
@@ -63,13 +64,12 @@ function Projects() {
   );
 
   const getData = () => {
-
     var requestOptions = {
       method: "POST",
       redirect: "follow",
     };
 
-    fetch("http://glacial-refuge-38575.herokuapp.com/getAllUsers", requestOptions)
+    fetch(`${BASE_URL}/getAllUsers`, requestOptions)
       .then((response) => response.json())
       .then((users) => {
         users.forEach((user) => {
@@ -145,13 +145,13 @@ function Projects() {
   };
 
   const downloadUsers = () => {
-    var url = "http://glacial-refuge-38575.herokuapp.com/downloadUsers";
+    var url = `${BA}/downloadUsers`;
     window.open(url, "_blank", "noopener,noreferrer");
     closeMenu();
   };
 
   const downloadMeals = () => {
-    var url = "http://glacial-refuge-38575.herokuapp.com/downloadMeals";
+    var url = `${BASE_URL}/downloadMeals`;
     window.open(url, "_blank", "noopener,noreferrer");
     closeMenu();
   };

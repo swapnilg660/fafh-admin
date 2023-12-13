@@ -42,6 +42,7 @@ import { Card } from "@mui/material";
 import Projects from "./components/Projects";
 import { object } from "prop-types";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "config";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -56,7 +57,7 @@ function Dashboard() {
   });
   const [waterData, setWaterData] = useState({
     labels: ["M", "T", "W", "T", "F", "S", "S"],
-    datasets: { label: "Water", data: [0, 0, 0, 0, 0, 0, 0] },
+    datasets: { label: "Water/cups", data: [0, 0, 0, 0, 0, 0, 0] },
   });
 
   const getUserData = () => {
@@ -65,7 +66,7 @@ function Dashboard() {
       redirect: "follow",
     };
 
-    fetch("https://glacial-refuge-38575.herokuapp.com/getUserStats", requestOptions)
+    fetch(`${BASE_URL}/getUserStats`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log("result", result);
@@ -88,7 +89,7 @@ function Dashboard() {
       redirect: "follow",
     };
 
-    fetch("https://glacial-refuge-38575.herokuapp.com/getMealStats", requestOptions)
+    fetch(`${BASE_URL}/getMealStats`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log("result", result);
@@ -111,7 +112,7 @@ function Dashboard() {
       redirect: "follow",
     };
 
-    fetch("https://glacial-refuge-38575.herokuapp.com/getWaterStats", requestOptions)
+    fetch(`${BASE_URL}/getWaterStats`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         console.log("result", result);
@@ -142,7 +143,7 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsBarChart
+                <ReportsLineChart
                   color="info"
                   title="Application Users"
                   description="Registered FAFH users"

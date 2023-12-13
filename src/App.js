@@ -114,7 +114,7 @@ export default function App() {
         return getRoutes(route.collapse);
       }
 
-      if (route.route) {
+      if (route.route  ) {
         return <Route exact path={route.route} element={route.component} key={route.key} />;
       }
       return null;
@@ -143,6 +143,8 @@ export default function App() {
       </Icon>
     </MDBox>
   );
+
+  
 
   return direction === "rtl" ? (
     <CacheProvider value={rtlCache}>
