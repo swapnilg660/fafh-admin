@@ -158,7 +158,7 @@ function Dashboard() {
                   color="success"
                   title="Meals recorded"
                   description="Total meals recorded in the last 7 days"
-                  date="updated on new meal user record"
+                  date="Updated on new meal user record"
                   chart={mealsData}
                 />
               </MDBox>
@@ -169,7 +169,7 @@ function Dashboard() {
                   color="dark"
                   title="Water consumption"
                   description="Average water consumption in the last 7 days"
-                  date="updated on each user consumption"
+                  date="Updated on each user consumption"
                   chart={waterData}
                 />
               </MDBox>

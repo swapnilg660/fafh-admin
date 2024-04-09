@@ -145,7 +145,7 @@ function Projects() {
   };
 
   const downloadUsers = () => {
-    var url = `${BA}/downloadUsers`;
+    var url = `${BASE_URL}/downloadUsers`;
     window.open(url, "_blank", "noopener,noreferrer");
     closeMenu();
   };
