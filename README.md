@@ -1,2 +1,3 @@
-# fafh-admin
-The admin panel for the food away from home (FAFH) application 
+# FOOD AWAY FROM HOME
+
+Admin Panel For Food Away From Home
