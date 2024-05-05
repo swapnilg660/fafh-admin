@@ -1,1 +1,1 @@
-web: node ./src/App.js
+web: npm install && snode ./src/App.js
